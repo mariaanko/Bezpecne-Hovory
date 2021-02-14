@@ -17,23 +17,25 @@ class MainActivity : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
         val webView: WebView = findViewById(R.id.webView)
         var phoneNumber: String? = null
-        if(intent.extras != null) phoneNumber = intent.extras?.getString("number").toString()
+        if (intent.extras != null) phoneNumber = intent.extras?.getString("number").toString()
 
-        if(phoneNumber!=null){
+        if (phoneNumber != null) {
             webView.loadUrl("https://www.vyhladavaniecisla.sk/cislo/" + phoneNumber)
-        }else webView.loadUrl("https://www.vyhladavaniecisla.sk/")
+        } else webView.loadUrl("https://www.vyhladavaniecisla.sk/")
 
         intent.removeExtra("number")
         phoneNumber = null
 
-        button.setOnClickListener(){
+        button.setOnClickListener() {
             this.finish()
         }
     }
 
-    fun askForPermissions() = runWithPermissions(Manifest.permission.READ_PHONE_STATE,
-                                                    Manifest.permission.READ_CALL_LOG,
-                                                    Manifest.permission.READ_CONTACTS) {
+    fun askForPermissions() = runWithPermissions(
+        Manifest.permission.READ_PHONE_STATE,
+        Manifest.permission.READ_CALL_LOG,
+        Manifest.permission.READ_CONTACTS
+    ) {
 
     }
 }
